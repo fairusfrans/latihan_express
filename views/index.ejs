@@ -9,12 +9,12 @@
   <body>
     <%- include('partials/navbar') %>
     <div class="d-flex flex-column align-items-center min-vh-100"">
-    <div class="card" style="width: 50rem;">
+    <div>
       <img src="/images/koding.jpg" height="300" width="100" class="card-img-top" alt="..." />
       <div class="card-body">
-        <h1>Halaman Home</h1>
+        <h1>Halo, <%= namaPengguna %>!</h1>
         <p class="card-text">Saya Belajar Expressjs</p>
-        <a href="#" class="btn btn-primary">Halo, <%= namaPengguna %>!</a>
+        <a href="/barang" class="btn btn-dark">Explore Barang</a>
       </div>
     </div>
     </div>
