@@ -278,6 +278,12 @@ app.post("/karyawan/hapus/:id", cekIdKaryawan, async (req, res, next) => {
 });
 
 
-app.listen(port, () => {
-  console.log(`Server Berjalan di port ${port}`);
-});
+// Jalankan server hanya saat aplikasi dijalankan secara lokal
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Server Berjalan di port ${port}`);
+  });
+}
+
+// Export aplikasi untuk Vercel
+module.exports = app;
