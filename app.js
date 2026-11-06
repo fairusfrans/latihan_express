@@ -192,19 +192,17 @@ app.post("/barang/hapus/:id", cekIdBarang, async (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  if (err.code === "P2025") {
-    return res
-      .status(404)
-      .type("text/plain")
-      .send("Barang tidak ditemukan atau sudah dihapus.");
-  }
-  console.error(err.message);
-  res
-    .status(500)
-    .type("text/plain")
-    .send("Operasi gagal. Periksa koneksi dan pesan pada terminal.");
-});
+  console.error("ERROR DATABASE / SERVER:");
+  console.error(err);
 
+  if (err.code === "P2025") {
+    return res.status(404).send("Data tidak ditemukan.");
+  }
+
+  res.status(500).send(
+    "Operasi gagal. Periksa Runtime Logs Vercel."
+  );
+});
 app.get("/karyawan/tambah", (req, res) => {
   res.render("tambah-karyawan");
 });
