@@ -191,18 +191,27 @@ app.post("/barang/hapus/:id", cekIdBarang, async (req, res, next) => {
   }
 });
 
+// ERROR HANDLER - HARUS PALING BAWAH
 app.use((err, req, res, next) => {
-  console.error("ERROR DATABASE / SERVER:");
-  console.error(err);
+  console.error("ERROR:", {
+    path: req.originalUrl,
+    message: err.message,
+    code: err.code,
+    stack: err.stack
+  });
 
   if (err.code === "P2025") {
     return res.status(404).send("Data tidak ditemukan.");
   }
 
-  res.status(500).send(
+  return res.status(500).send(
     "Operasi gagal. Periksa Runtime Logs Vercel."
   );
 });
+
+// Export aplikasi untuk Vercel
+module.exports = app;
+
 app.get("/karyawan/tambah", (req, res) => {
   res.render("tambah-karyawan");
 });
