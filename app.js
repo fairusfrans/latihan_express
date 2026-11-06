@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 const express = require("express");
 const app = express();
 const { body, validationResult } = require("express-validator");
-const port = process.env.PORT;
+const port = Number(process.env.PORT) || 5000;
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
