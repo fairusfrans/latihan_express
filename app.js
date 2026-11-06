@@ -279,5 +279,5 @@ app.post("/karyawan/hapus/:id", cekIdKaryawan, async (req, res, next) => {
 
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Server Berjalan di port ${port}`);
 });
